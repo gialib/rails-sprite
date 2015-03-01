@@ -1,3 +1,5 @@
+require "rails_sprite/stylesheet_generator"
+
 module RailsSprite
   class SpriteUtil
     attr_reader :root_path, :scope_name, :recipe_path, :file_extend,
@@ -71,9 +73,14 @@ module RailsSprite
           if ::File.file?( file_path )
             # puts "#{file_path}"
 
+            file_name_split = file_name.split('.')
+            file_name_split.pop
+            file_purename = file_name_split.join('.')
+
             file_info = {
               :filepath => file_path,
               :filename => file_name,
+              :file_purename => file_purename,
               :idx => counter
             }.merge(
               _library.load( file_path )
@@ -95,17 +102,28 @@ module RailsSprite
       end
 
       _composite_images( :file_infos => file_infos, :max_w => max_w, :max_h => max_h )
-      _composite_css( :file_infos => file_infos, :max_w => max_w, :max_h => max_h )
+      _composite_css( file_infos )
     end
 
     private
+
+    def stylesheet_generator
+      RailsSprite::StylesheetGenerator
+    end
 
     def _library
       RailsSprite::Library::RMagick
     end
 
-    def _composite_css options={}
-
+    def _composite_css file_infos
+      stylesheet_generator.generate(
+        :css_class_shared => css_class_shared,
+        :css_class_prefix => css_class_prefix,
+        :file_infos => file_infos,
+        :image_scope_name => image_scope_name,
+        :css_extend => css_extend,
+        :stylesheet_to => stylesheet_to
+      )
     end
 
     def _composite_images options={}
