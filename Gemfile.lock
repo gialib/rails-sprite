@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-sprite (0.0.1)
+    rails_sprite (0.0.2)
       rails
       rmagick
 
@@ -110,5 +110,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rails-sprite!
+  rails_sprite!
   sqlite3

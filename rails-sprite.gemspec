@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = RailsSprite::VERSION
   s.authors     = ["WangJinzhong"]
   s.email       = ["andywang7259@163.com"]
-  s.homepage    = "http://github.com"
+  s.homepage    = "http://github.com/gialib/rails-sprite.git"
   s.summary     = "Summary of RailsSprite."
   s.description = "Description of RailsSprite."
   s.license     = "MIT"
