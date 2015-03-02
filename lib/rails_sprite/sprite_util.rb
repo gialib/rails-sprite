@@ -134,6 +134,8 @@ module RailsSprite
         target.composite!(file_info[:image], file_info[:x], file_info[:y], Magick::SrcOverCompositeOp)
       end
 
+      system "mkdir -p #{::File.dirname(image_to_file_path)}"
+
       target.write(image_to_file_path)
     end
 
