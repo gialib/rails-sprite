@@ -5,13 +5,13 @@ require "rails_sprite/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "rails-sprite"
+  s.name        = "rails_sprite"
   s.version     = RailsSprite::VERSION
-  s.authors     = ["WangJinzhong"]
+  s.authors     = ["happy"]
   s.email       = ["andywang7259@163.com"]
   s.homepage    = "http://github.com/gialib/rails-sprite.git"
-  s.summary     = "Summary of RailsSprite."
-  s.description = "Description of RailsSprite."
+  s.summary     = "Rails CSS Sprite Utils."
+  s.description = "Rails CSS Sprite Utils."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

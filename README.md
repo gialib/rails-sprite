@@ -20,15 +20,12 @@
 
       simple:
 
-      RailsSprite.sprite(
-        :root_path => "#{File.dirpath(__FILE__)}/..",
-        :scope_name => "rails_xxx/",
-        :recipe_path => "icons/16x16",
-        :file_extend => '.png',
-        :spacing => 10,
-        :css_class_shared => 'rails_xxx-icon',
-        :css_class_prefix => 'icons-16x16-'
-      )
-
+        ::RailsSprite.sprite(
+          :root_path => "#{::File.dirname(__FILE__)}/..",
+          :scope_name => "rails_app_name/",
+          :recipe_path => "icons/16x16",
+          :css_class_prefix => "u-icons-16x16-",
+          :spacing => 10
+        )
     
 ```
