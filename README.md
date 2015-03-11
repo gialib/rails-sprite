@@ -1,6 +1,14 @@
 # RailsSprite
 
 ```
+  usage:
+
+    add to your Gemfile
+
+      gem 'rails-sprite'
+
+    bundle install
+
   eg.
 
     image source folder:
