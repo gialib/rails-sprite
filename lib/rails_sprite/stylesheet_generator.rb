@@ -30,15 +30,16 @@ module RailsSprite
       result[:image_scope_name] = image_scope_name
       result[:css_class_shared] = css_class_shared
 
-      # case css_extend
-      # when '.css.scss.erb'
-      # else
-      # end
+      css_filt_content = case css_extend
+                         when '.css.scss.erb', '.scss.erb'
+                           composite_css_scss_erb(result)
+                         else
+                         end
 
       system "mkdir -p #{::File.dirname(stylesheet_to)}"
 
       ::File.open(stylesheet_to, 'w') do |file|
-        file.write( composite_css_scss_erb(result) )
+        file.write( css_filt_content )
       end
 
       result
@@ -55,40 +56,8 @@ module RailsSprite
         END_CSS
       end
 
-
-#       styles << <<-END_CSS
-# .#{result[:css_class_shared]} {
-#   background: url(<%= image_path("#{result[:image_scope_name]}") %>) no-repeat;
-# }
-#       END_CSS
-
-#      result[:styles].each do |style|
-#        styles << <<-END_CSS
-#.#{style[:class]} {
-#  background-position: #{style[:x]} -#{style[:y]};
-#}
-#        END_CSS
-#      end
-
-
       styles.join("\n")
     end
-
-    # def self.generate(style_name, selector, url, images)
-    #   styles = []
-    #   images.each do |image|
-    #     attr = [
-    #       "width: #{image[:cssw]}px",
-    #       "height: #{image[:cssh]}px",
-    #       "background: #{url} #{-image[:cssx]}px #{-image[:cssy]}px no-repeat"
-    #     ]
-    #     image[:selector] = selector                          # make selector available for (optional) custom rule generators
-    #     image[:style]    = send("#{style_name}_style", attr) # make pure style available for (optional) custom rule generators (see usage of yield inside Runner#style)
-    #     styles << send(style_name, selector, image[:name], attr)
-    #   end
-    #   styles << ""
-    #   styles.join("\n")
-    # end
 
   end
 end
