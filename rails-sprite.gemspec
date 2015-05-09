@@ -5,7 +5,7 @@ require "rails_sprite/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "rails_sprite"
+  s.name        = "rails-sprite"
   s.version     = RailsSprite::VERSION
   s.authors     = ["happy"]
   s.email       = ["andywang7259@163.com"]

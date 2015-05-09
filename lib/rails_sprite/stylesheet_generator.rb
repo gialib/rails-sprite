@@ -48,12 +48,24 @@ module RailsSprite
     def self.composite_css_scss_erb result
       styles = []
 
+      styles << <<-END_CSS
+.#{result[:css_class_shared]} {
+  background-image: url(<%= image_path("#{result[:image_scope_name]}") %>);
+  background-repeat: no-repeat;
+}
+END_CSS
+
       result[:styles].each do |style|
         styles << <<-END_CSS
 .#{style[:class]} {
-  background: url(<%= image_path("#{result[:image_scope_name]}") %>) #{style[:x]} -#{style[:y]} no-repeat;
+  background-position: #{style[:x]} -#{style[:y]};
 }
         END_CSS
+
+
+#  .#{style[:class]} {
+#    background: url(<%= image_path("#{result[:image_scope_name]}") %>) #{style[:x]} -#{style[:y]} no-repeat;
+#  }
       end
 
       styles.join("\n")
