@@ -71,9 +71,7 @@ module RailsSprite
         if file_name != '.' && file_name != '..' && file_name.end_with?(file_extend)
           file_path = "#{image_source_folder}/#{file_name}"
 
-          if ::File.file?( file_path )
-            # puts "#{file_path}"
-
+          if ::File.file?(file_path)
             file_name_split = file_name.split('.')
             file_name_split.pop
             file_purename = file_name_split.join('.')
@@ -90,7 +88,7 @@ module RailsSprite
             file_info[:x] = x
             file_info[:y] = y
 
-            y += ( spacing + file_info[:height] )
+            y += (spacing + file_info[:height])
 
             max_w = [max_w, file_info[:width]].max
             max_h = y

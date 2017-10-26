@@ -64,6 +64,8 @@ END_CSS
 }
         END_CSS
       end
+
+      styles.join("\n")
     end
 
     def self.composite_css_scss_erb result
