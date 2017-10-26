@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-sprite (0.0.6)
+    rails-sprite (0.0.7)
       rails
       rmagick
 
