@@ -6,7 +6,7 @@ module RailsSprite
       :spacing, :image_to_folder, :image_source_folder,
       :stylesheet_to, :image_to_file_path, :css_class_prefix, :css_class_shared,
       :image_scope_name, :stylesheet_scope_name,
-      :css_extend, :file_extend_name
+      :css_extend, :file_extend_name, :zoom
 
     #
     #  :css_extend => "",
@@ -51,6 +51,8 @@ module RailsSprite
 
       @css_class_shared         = options.fetch(:css_class_shared, "rs-#{@scope_str}")
       @css_class_prefix         = options.fetch(:css_class_prefix, "rs-#{@scope_str}-#{@recipe_str}-")
+
+      @zoom                     = options.fetch(:zoom, 1).to_i
     end
 
     def perform
@@ -116,6 +118,7 @@ module RailsSprite
 
     def _composite_css file_infos
       stylesheet_generator.generate(
+        :zoom => zoom,
         :css_class_shared => css_class_shared,
         :css_class_prefix => css_class_prefix,
         :file_infos => file_infos,

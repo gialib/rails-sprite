@@ -11,7 +11,8 @@ class RailsSpriteTest < ActiveSupport::TestCase
       :scope_name => "rails_xxx/",
       :recipe_path => "icons/32x32",
       :css_class_shared => 'rails_xxx-icon',
-      :css_class_prefix => 'icons-32x32-'
+      :css_class_prefix => 'icons-32x32-',
+      :zoom => 2
 
       #  :root_path => '.',
       #  :scope_name => "rails_xxx",
