@@ -53,7 +53,7 @@ module RailsSprite
       styles << <<-END_CSS
 // 将下面3行，放入页面中(仅供参考)
 // .#{result[:css_class_shared]} {
-//   background-image: url(<%= image_path("#{result[:image_scope_name]}") %>) no-repeat;
+//   background-image: url(<%= image_path("#{result[:image_scope_name]}") %>);
 //   background-repeat: no-repeat;
 // }
 END_CSS
@@ -74,7 +74,7 @@ END_CSS
 
       styles << <<-END_CSS
 .#{result[:css_class_shared]} {
-  background-image: url(<%= image_path("#{result[:image_scope_name]}") %>) no-repeat;
+  background-image: url(<%= image_path("#{result[:image_scope_name]}") %>);
   background-repeat: no-repeat;
 }
 END_CSS
