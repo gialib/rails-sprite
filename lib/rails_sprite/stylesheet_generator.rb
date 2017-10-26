@@ -10,7 +10,7 @@ module RailsSprite
       file_infos = options[:file_infos]
       stylesheet_to = options[:stylesheet_to]
 
-      result = {}
+      result = {:max_w => options[:max_w] / zoom, :max_h => options[:max_h] / zoom}
       styles = []
 
       file_infos.each do |file_info|
@@ -29,16 +29,6 @@ module RailsSprite
       result[:image_scope_name] = image_scope_name
       result[:css_class_shared] = css_class_shared
 
-      ## 高度取总和
-      result[:background_y] = file_infos.map do |file_info|
-        file_info[:height]
-      end.sum / zoom
-
-      ## 宽度取最大值
-      result[:background_x] = file_infos.map do |file_info|
-        file_info[:width]
-      end.max / zoom
-
       css_filt_content = case css_extend
                          when '.css.scss.erb', '.scss.erb'
                            composite_css_scss_erb(result)
@@ -50,7 +40,7 @@ module RailsSprite
       system "mkdir -p #{::File.dirname(stylesheet_to)}"
 
       ::File.open(stylesheet_to, 'w') do |file|
-        file.write( css_filt_content )
+        file.write(css_filt_content)
       end
 
       result
@@ -69,7 +59,7 @@ END_CSS
       styles << <<-END_CSS
 .#{result[:css_class_shared]} {
   background-repeat: no-repeat;
-  background-size: #{result[:background_x]}px #{result[:background_y]}px;
+  background-size: #{result[:max_w]}px #{result[:max_h]}px;
 }
 END_CSS
 
@@ -93,7 +83,7 @@ END_CSS
 .#{result[:css_class_shared]} {
   background-image: url(<%= image_path("#{result[:image_scope_name]}") %>);
   background-repeat: no-repeat;
-  background-size: #{result[:background_x]}px #{result[:background_y]}px;
+  background-size: #{result[:max_w]}px #{result[:max_h]}px;
 }
 END_CSS
 

@@ -102,8 +102,8 @@ module RailsSprite
         end
       end
 
-      _composite_images( :file_infos => file_infos, :max_w => max_w, :max_h => max_h )
-      _composite_css( file_infos )
+      _composite_images(:file_infos => file_infos, :max_w => max_w, :max_h => max_h)
+      _composite_css(file_infos, :max_w => max_w, :max_h => max_h)
     end
 
     private
@@ -116,12 +116,14 @@ module RailsSprite
       RailsSprite::Library::RMagick
     end
 
-    def _composite_css file_infos
+    def _composite_css file_infos, options
       stylesheet_generator.generate(
         :zoom => zoom,
         :css_class_shared => css_class_shared,
         :css_class_prefix => css_class_prefix,
         :file_infos => file_infos,
+        :max_w => options[:max_w],
+        :max_h => options[:max_h],
         :image_scope_name => image_scope_name,
         :css_extend => css_extend,
         :stylesheet_to => stylesheet_to
