@@ -50,8 +50,7 @@ module RailsSprite
 
       styles << <<-END_CSS
 .#{result[:css_class_shared]} {
-  background-image: url(<%= image_path("#{result[:image_scope_name]}") %>);
-  background-repeat: no-repeat;
+  background: url(<%= image_path("#{result[:image_scope_name]}") %>) no-repeat;
 }
 END_CSS
 
