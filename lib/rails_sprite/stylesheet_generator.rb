@@ -62,6 +62,8 @@ END_CSS
         styles << <<-END_CSS
 .#{style[:class]} {
   background-position: #{style[:x]} -#{style[:y]};
+  height: #{style[:height]};
+  width: #{style[:width]};
 }
         END_CSS
       end
@@ -71,6 +73,8 @@ END_CSS
 
     def self.composite_css_scss_erb result
       styles = []
+
+      puts result.inspect
 
       styles << <<-END_CSS
 .#{result[:css_class_shared]} {
@@ -83,6 +87,8 @@ END_CSS
         styles << <<-END_CSS
 .#{style[:class]} {
   background-position: #{style[:x]} -#{style[:y]};
+  height: #{style[:height]};
+  width: #{style[:width]};
 }
         END_CSS
 
