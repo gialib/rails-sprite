@@ -33,6 +33,8 @@ module RailsSprite
       css_filt_content = case css_extend
                          when '.css.scss.erb', '.scss.erb'
                            composite_css_scss_erb(result)
+                         when '.css', '.scss'
+                           composite_css_scss(result)
                          else
                          end
 
@@ -43,6 +45,25 @@ module RailsSprite
       end
 
       result
+    end
+
+    def self.composite_css_scss result
+      styles = []
+
+      styles << <<-END_CSS
+// 将下面3行，放入页面中(仅供参考)
+// .#{result[:css_class_shared]} {
+//   background: url(<%= static_url("#{result[:image_scope_name]}") %>) no-repeat;
+// }
+END_CSS
+
+      result[:styles].each do |style|
+        styles << <<-END_CSS
+.#{style[:class]} {
+  background-position: #{style[:x]} -#{style[:y]};
+}
+        END_CSS
+      end
     end
 
     def self.composite_css_scss_erb result

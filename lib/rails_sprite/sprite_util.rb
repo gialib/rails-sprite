@@ -9,6 +9,7 @@ module RailsSprite
       :css_extend, :file_extend_name
 
     #
+    #  :css_extend => "",
     #  :root_path => '.',
     #  :scope_name => "rails_xxx",
     #  :recipe_path => "icons/16x16",
